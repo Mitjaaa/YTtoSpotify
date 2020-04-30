@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    api 'org.apache.commons:commons-math3:3.6.1'
+
+    implementation 'com.google.guava:guava:23.0'
+	implementation 'com.google.apis:google-api-services-youtube:+'
+	implementation 'com.google.apis:google-api-services-youtubeAnalytics:+'
+	implementation 'com.google.apis:google-api-services-youtubereporting:+'
+	implementation 'com.google.http-client:google-http-client-jackson2:+'
+	implementation 'com.google.oauth-client:google-oauth-client-jetty:+'
+	implementation 'com.google.collections:google-collections:+'
+
+	implementation 'se.michaelthelin.spotify:spotify-web-api-java:4.3.0'
+	implementation 'org.springframework.boot:spring-boot-starter-web:+'
+}
+
+repositories {
+    jcenter()
+}
