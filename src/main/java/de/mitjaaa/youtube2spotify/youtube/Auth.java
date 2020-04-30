@@ -1,4 +1,4 @@
-package de.jimat.youtube2spotify.youtube;
+package de.mitjaaa.youtube2spotify.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.auth.oauth2.StoredCredential;

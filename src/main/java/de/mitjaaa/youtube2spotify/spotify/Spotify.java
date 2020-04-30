@@ -1,4 +1,4 @@
-package de.jimat.youtube2spotify.spotify;
+package de.mitjaaa.youtube2spotify.spotify;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,7 +16,7 @@ import com.wrapper.spotify.requests.authorization.authorization_code.Authorizati
 import com.wrapper.spotify.requests.data.playlists.AddTracksToPlaylistRequest;
 import com.wrapper.spotify.requests.data.search.simplified.SearchTracksRequest;
 
-import de.jimat.youtube2spotify.youtube.YTPlaylistItem;
+import de.mitjaaa.youtube2spotify.youtube.YTPlaylistItem;
 
 public class Spotify {
 	
@@ -36,7 +36,7 @@ public class Spotify {
 		this.clientSecret = clientSecret;
 		this.playlistId = playlistId;
 		
-		this.redirectUri = SpotifyHttpManager.makeUri("http://localhost:8080/greeting");
+		this.redirectUri = SpotifyHttpManager.makeUri("http://localhost:8080/api");
 		
 		spotifyApi = new SpotifyApi.Builder()
 		          .setClientId(this.clientId)
@@ -95,11 +95,21 @@ public class Spotify {
 	
 	public void getAuthorizeUri() throws IOException, URISyntaxException {
 		authorizationCodeUriRequest = spotifyApi.authorizationCodeUri().scope("playlist-modify-public,playlist-modify-private,user-read-private").build();
-		
 		URI uri = authorizationCodeUriRequest.execute();
 		
-		Runtime rt = Runtime.getRuntime();
-		rt.exec("rundll32 url.dll,FileProtocolHandler " + uri.toString());
+		String os = System.getProperty("os.name").toLowerCase();
+		if(os.indexOf("win") >= 0) {
+			Runtime rt = Runtime.getRuntime();
+			rt.exec("rundll32 url.dll,FileProtocolHandler " + uri.toString());
+			
+		} else if(os.indexOf("mac") >= 0) {
+			Runtime rt = Runtime.getRuntime();
+			rt.exec("open " + uri.toString());
+			
+		} else if(os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
+			Runtime rt = Runtime.getRuntime();
+			rt.exec("xdg-open " + uri.toString());
+		}
 	}
 	
 	private AuthorizationCodeRequest authorizationCodeRequest;

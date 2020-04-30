@@ -1,4 +1,4 @@
-package de.jimat.youtube2spotify.youtube;
+package de.mitjaaa.youtube2spotify.youtube;
 
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -7,7 +7,6 @@ import com.google.api.services.youtube.model.*;
 import com.google.common.collect.Lists;
 
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class YoutubePlaylist {
      * Define a global variable that identifies the video that will be added
      * to the new playlist.
      */
-    private String PLAYLIST_ID; //"PLaJMPdUYqLLws7HlLN9SgELyv0xkm-NMa";
+    private String PLAYLIST_ID;
 
     public YoutubePlaylist(String PLAYLIST_ID) {
     	this.PLAYLIST_ID = PLAYLIST_ID;
@@ -46,7 +45,7 @@ public class YoutubePlaylist {
             Credential credential = Auth.authorize(scopes, "playlistupdates");
             // This object is used to make YouTube Data API requests.
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential)
-                    .setApplicationName("YT-to-Spotify")
+                    .setApplicationName("YTtoSpotify")
                     .build();
 
         } catch (GoogleJsonResponseException e) {

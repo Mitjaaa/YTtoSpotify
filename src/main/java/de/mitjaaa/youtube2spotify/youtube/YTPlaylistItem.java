@@ -1,6 +1,4 @@
-package de.jimat.youtube2spotify.youtube;
-
-import java.math.BigInteger;
+package de.mitjaaa.youtube2spotify.youtube;
 
 public class YTPlaylistItem {
 	

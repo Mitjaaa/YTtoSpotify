@@ -1,4 +1,4 @@
-package de.jimat.youtube2spotify.webservice;
+package de.mitjaaa.youtube2spotify.webservice;
 
 import java.io.IOException;
 
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wrapper.spotify.exceptions.SpotifyWebApiException;
 
-import de.jimat.youtube2spotify.StartTransfer;
-import de.jimat.youtube2spotify.spotify.Spotify;
+import de.mitjaaa.youtube2spotify.StartTransfer;
+import de.mitjaaa.youtube2spotify.spotify.Spotify;
 
 @RestController
 public class ResponsecodeController {
@@ -19,6 +19,6 @@ public class ResponsecodeController {
 		Spotify.code = code;
 		StartTransfer.startSpotify();
 		
-		return "You are done here! Go back to your program!";
+		return "You are done here!";
 	}
 }
