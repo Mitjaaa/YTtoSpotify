@@ -17,8 +17,10 @@ when you've done these steps you can compile & start the project!
 ## Example
 I've transfered [my personal youtube-playlist](https://www.youtube.com/playlist?list=PLaJMPdUYqLLws7HlLN9SgELyv0xkm-NMa) to [my spotify-playlist](https://open.spotify.com/playlist/0ihLi9e9oDKTjmgEb6mHfL?si=RDhiNiwlTLmajgZkJD_gOw). In my Youtube-playlist are 281 and in my Spotify-playlist are 268 items because of some songs which aren't on Spotify and some false-positives.
 
+### Note
+YTtoSpotify currently doesn't transfer to 100% correctly and has sometimes some false-postives in the transfered playlist. That is because some songs on Youtube have some unknown characters, a weird title, or something else. The program tries to filter stuff like this out but sometimes spotify just can't find the song. 
+
+
 ## Licensing
 The source code is licensed under GPL v3. License is available [here](https://github.com/Mitjaaa/YTtoSpotify/blob/master/LICENSE).
 
-### Note
-YTtoSpotify currently doesn't transfer to 100% correctly and has sometimes some false-postives in the transfered playlist. That is because some songs on Youtube have some unknown characters, a weird title, or something else. The program tries to filter stuff like this out but sometimes spotify just can't find the song. 
