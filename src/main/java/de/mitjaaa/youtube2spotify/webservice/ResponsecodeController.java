@@ -14,10 +14,20 @@ import de.mitjaaa.youtube2spotify.spotify.Spotify;
 @RestController
 public class ResponsecodeController {
 
-	@GetMapping("/greeting")
+	@GetMapping("/api")
 	public String response(@RequestParam(value = "code", defaultValue = "1234") String code) throws SpotifyWebApiException, IOException, InterruptedException {
 		Spotify.code = code;
-		StartTransfer.startSpotify();
+		
+		Thread transfer = new Thread() {
+			public void run() {
+				try {
+					StartTransfer.startSpotify();
+				} catch (SpotifyWebApiException | IOException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		transfer.start();
 		
 		return "You are done here!";
 	}

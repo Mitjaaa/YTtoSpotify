@@ -9,6 +9,7 @@ import com.google.common.collect.Lists;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 public class YoutubePlaylist {
 	
@@ -19,8 +20,7 @@ public class YoutubePlaylist {
     private YouTube youtube;
 
     /**
-     * Define a global variable that identifies the video that will be added
-     * to the new playlist.
+     * Define a global variable that holds the ID of the youtube playlist.
      */
     private String PLAYLIST_ID;
 
@@ -29,20 +29,12 @@ public class YoutubePlaylist {
     }
     
     
-    /**
-     * Authorize the user, create a playlist, and add an item to the playlist.
-     *
-     * @param args command line args (not used).
-     */
     public void startYoutubeAPI() {
-
-        // This OAuth 2.0 access scope allows for full read/write access to the
-        // authenticated user's account.
         List<String> scopes = Lists.newArrayList("https://www.googleapis.com/auth/youtube");
 
         try {
             // Authorize the request.
-            Credential credential = Auth.authorize(scopes, "playlistupdates");
+            Credential credential = Auth.authorize(scopes, "YTtoSpotify");
             // This object is used to make YouTube Data API requests.
             youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential)
                     .setApplicationName("YTtoSpotify")
@@ -60,25 +52,34 @@ public class YoutubePlaylist {
         }
     }
 
-    /**
-     * Create a playlist item with the specified video ID and add it to the
-     * specified playlist.
-     *
-     * @param playlistId assign to newly created playlistitem
-     * @param videoId    YouTube video id to add to playlistitem
-     * @throws InterruptedException 
-     */
     public List<YTPlaylistItem> getPlaylistItems() throws IOException, InterruptedException {
-    	
-    	System.out.println("Getting all items from the YT-Playlist..");
+    	int videos = scanPlaylistSizeFromUser();
+    	System.out.println("getting all items from the playlist..");
 
     	String nextPage = "";
     	List<YTPlaylistItem> items = new LinkedList<YTPlaylistItem>();
     	
-    	for(int i = 0; i < 4; i++) {
-    		YouTube.PlaylistItems.List playlistItemsCommand = youtube.playlistItems().list("snippet,contentDetails");
+    	List<String> options1 = new LinkedList<String>();
+    	options1.add("snippet");
+    	options1.add("contentDetails");
+    	
+    	List<String> options2 = new LinkedList<String>();
+    	options2.add("snippet");
+    	
+    	// problem: its repeating the songs it added already
+    	for(int i = 0; i < 10; i++) {
+    		YouTube.PlaylistItems.List playlistItemsCommand = youtube.playlistItems().list(options1);
 	        playlistItemsCommand.setPlaylistId(PLAYLIST_ID);
-	        playlistItemsCommand.setMaxResults((long) 50);
+	        
+	        if(videos > 50) {
+	        	playlistItemsCommand.setMaxResults((long) 50);
+	        	videos = videos - 50;
+	        	
+	        } else {
+	        	playlistItemsCommand.setMaxResults((long) videos);
+	        	videos = videos - videos;
+	        }
+	        
 	        
 	        if(i != 0) {
 	        	playlistItemsCommand.setPageToken(nextPage);
@@ -88,7 +89,10 @@ public class YoutubePlaylist {
 	        nextPage = returnedPlaylistItem.getNextPageToken();
 	        
 	        for(PlaylistItem item: returnedPlaylistItem.getItems())  {
-	            YouTube.Videos.List listVideosRequest = youtube.videos().list("snippet").setId(item.getSnippet().getResourceId().getVideoId());
+	            List<String> id = new LinkedList<String>();
+	            id.add(item.getSnippet().getResourceId().getVideoId());
+	        	
+	        	YouTube.Videos.List listVideosRequest = youtube.videos().list(options2).setId(id);
 	            VideoListResponse listResponse = listVideosRequest.execute();
 	            
 	            List<Video> videoList = listResponse.getItems();
@@ -100,10 +104,30 @@ public class YoutubePlaylist {
 	            
 	            if(pitem.parseVideotitle() != null) items.add(pitem);
 	        }
+	        
+	        if(videos == 0) break;
     	}
     	
-    	System.out.println("Parsed all Youtube Items!");
+    	System.out.println("parsed all items!");
         return items;
     }
+
+
+	private int scanPlaylistSizeFromUser() {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.print("\nenter the size of your youtube-playlist: ");
+		
+		try {
+			return Integer.parseInt(scanner.nextLine());
+		
+		} catch(Exception e) {
+			System.err.println("\nplease enter a valid number!");
+			return scanPlaylistSizeFromUser();
+		
+		} finally {
+			scanner.close();
+		}
+	}
 
 }

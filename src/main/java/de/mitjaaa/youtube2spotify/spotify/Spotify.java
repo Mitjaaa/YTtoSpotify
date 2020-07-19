@@ -49,20 +49,19 @@ public class Spotify {
 		getAuthorizeTokens();
 		searchTracks(tracks);
 		
-		System.out.println("Transfered all tracks to Spotify!");
+		System.out.println("transfered all tracks to Spotify!");
 		System.exit(0);
 	}
-	
 	
 	
 	private SearchTracksRequest searchTracksRequest;
 	
 	private void searchTracks(List<YTPlaylistItem> tracks) throws SpotifyWebApiException, IOException {
-		System.out.println("Searching all tracks ...");
+		System.out.println("searching for every track ...");
 		
 		for(int i = 0; i < tracks.size(); i++) {
 			searchTracksRequest = spotifyApi.searchTracks(tracks.get(i).parseVideotitle()).build();
-			System.out.println("\nSearching " + tracks.get(i).parseVideotitle());
+			System.out.println("\nsearching " + tracks.get(i).parseVideotitle());
 			
 			try {
 				Paging<Track> trackPaging = searchTracksRequest.execute();
@@ -74,7 +73,7 @@ public class Spotify {
 				System.out.println("added " + trackPaging.getItems()[0].getName());
 			} catch(Exception e) {
 				e.printStackTrace();
-				System.err.println("Cant find " + tracks.get(i).parseVideotitle());
+				System.err.println("can't find " + tracks.get(i).parseVideotitle());
 			}
 		}
 	}
@@ -87,7 +86,7 @@ public class Spotify {
 		try {
 			addTracksToPlaylistRequest.execute();
 	    } catch (IOException | SpotifyWebApiException e) {
-	      System.out.println("Error: " + e.getMessage());
+	      System.err.println("error: " + e.getMessage());
 	    }
 	}
 	
@@ -123,7 +122,7 @@ public class Spotify {
 	      	spotifyApi.setAccessToken(authorizationCodeCredentials.getAccessToken());
 	      	spotifyApi.setRefreshToken(authorizationCodeCredentials.getRefreshToken());
 	    } catch (IOException | SpotifyWebApiException e) {
-	    	System.out.println("Error: " + e.getMessage());
+	    	System.err.println("error: " + e.getMessage());
 	    }
 	}
 }

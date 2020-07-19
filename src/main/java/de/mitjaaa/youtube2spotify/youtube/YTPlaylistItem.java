@@ -19,6 +19,26 @@ public class YTPlaylistItem {
 		if(!parsedTitle.matches("[\\w\\Q!\"#$%&'’()*+,-./ ?–:;<=>?@[\\]^_`{|}~\\E]+")) return null;
 		
 		
+		if(parsedTitle.contains(" & ")) {
+			parsedTitle = parsedTitle.replace(" & ", " ");
+		}
+		
+		if(parsedTitle.contains(" x ")) {
+			parsedTitle = parsedTitle.replace(" x ", " ");
+		}
+		
+		if(parsedTitle.contains("´")) {
+			parsedTitle = parsedTitle.replace("´", "");
+		}
+		
+		if(parsedTitle.contains("`")) {
+			parsedTitle = parsedTitle.replace("`", "");
+		}
+		
+		if(parsedTitle.contains("'")) {
+			parsedTitle = parsedTitle.replace("'", "");
+		}
+		
 		if(parsedTitle.contains(" - ")) {
 			parsedTitle = parsedTitle.replace(" - ", " ");
 		}
@@ -29,6 +49,10 @@ public class YTPlaylistItem {
 		
 		if(parsedTitle.contains(" | ")) {
 			parsedTitle = parsedTitle.replaceAll(" | ", " ");
+		}
+		
+		if(parsedTitle.contains("MV")) {
+			parsedTitle = parsedTitle.replaceAll("MV", "");
 		}
 		
 		if(parsedTitle.contains("-")) {
@@ -53,6 +77,10 @@ public class YTPlaylistItem {
 			parsedTitle = parsedTitle.replace(" ft. ", " ");
 		}
 		
+		if(parsedTitle.contains("Ft.")) {
+			parsedTitle = parsedTitle.replace(" Ft. ", " ");
+		}
+		
 		if(parsedTitle.contains("feat.")) {
 			parsedTitle = parsedTitle.replace(" feat. ", " ");
 		}
@@ -62,13 +90,40 @@ public class YTPlaylistItem {
 			parsedTitle = splitTitle[0];
 		}
 		
+		
 		if(parsedTitle.contains("lyrics")) {
 			parsedTitle = parsedTitle.replace("lyrics", " ");
+		}
+		
+		if(parsedTitle.contains("lyric")) {
+			parsedTitle = parsedTitle.replace("lyric", " ");
+		}
+		
+		if(parsedTitle.contains("Lyric")) {
+			parsedTitle = parsedTitle.replace("Lyric", " ");
 		}
 		
 		if(parsedTitle.contains("Lyrics")) {
 			parsedTitle = parsedTitle.replace("Lyrics", " ");
 		}
+		
+		
+		if(parsedTitle.contains("Official Video")) {
+			parsedTitle = parsedTitle.replace("Offical Video", " ");
+		}
+		
+		if(parsedTitle.contains("official Video")) {
+			parsedTitle = parsedTitle.replace("offical Video", " ");
+		}
+		
+		if(parsedTitle.contains("Official video")) {
+			parsedTitle = parsedTitle.replace("Offical video", " ");
+		}
+		
+		if(parsedTitle.contains("official video")) {
+			parsedTitle = parsedTitle.replace("offical video", " ");
+		}
+		
 		
 		if(parsedTitle.contains(".mp4")) {
 			parsedTitle = parsedTitle.replace(".mp4", " ");
@@ -94,7 +149,7 @@ public class YTPlaylistItem {
 			parsedTitle = parsedTitle.replace(" - Topic", " ");
 		}
 		
-		if(parsedTitle.contains("by")) {
+		if(parsedTitle.contains(" by ")) {
 			String[] splitTitle = parsedTitle.split("by");
 			parsedTitle = splitTitle[1] + " " + splitTitle[0];
 		}
