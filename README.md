@@ -1,12 +1,12 @@
 # YTtoSpotify
-This project transfers a Youtube playlist from your account to Spotify.
+This project transfers a Youtube playlist from your account to a Spotify playlist.
 
 ## How to use it?
 It's almost ready to use. You just need to do a few things:
 1. create a new project or choose an existing project [here](https://console.developers.google.com/project/_/apiui/credential).
     * then you need to copy and paste the client id and secret 
       from your Google project to the client_secrets.json in src/main/resources/
-2. visit [this](https://developer.spotify.com/dashboard/applications) site, log in, and create an app.
+2. visit [this site](https://developer.spotify.com/dashboard/applications), log in, and create an app.
     * then go to the settings and add http://localhost:8080/api as a new redirect url.
     * After that copy the client id and secret of your spotify app and paste them in StartTransfer.java in line 25 and 26.
 3. copy the youtube playlistid (you can find it in the link of your playlist) and paste it in StartTransfer.java in line 23.
@@ -14,5 +14,11 @@ It's almost ready to use. You just need to do a few things:
 
 when you've done these steps you can compile & start the project!
 
+## Example
+I've transfered [my personal youtube-playlist](https://www.youtube.com/playlist?list=PLaJMPdUYqLLws7HlLN9SgELyv0xkm-NMa) to [my spotify-playlist](https://open.spotify.com/playlist/0ihLi9e9oDKTjmgEb6mHfL?si=RDhiNiwlTLmajgZkJD_gOw). In my Youtube-playlist are 281 and in my Spotify-playlist are 268 items because of some songs which aren't on Spotify and some [false-positives]().
+
 ## Licensing
 The source code is licensed under GPL v3. License is available [here](https://github.com/Mitjaaa/YTtoSpotify/blob/master/LICENSE)
+
+### Note
+YTtoSpotify currently doesn't transfer to 100% correctly and has sometimes some false-postives in the transfered playlist. That is because some songs on Youtube have some unknown characters or just a weird title. YTtoSpotify tries to filter stuff like this out but sometimes spotify just can't find the song. 
