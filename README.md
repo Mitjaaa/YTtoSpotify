@@ -11,7 +11,8 @@ It's almost ready to use. You just need to do a few things:
     * After that copy the client id and secret of your spotify app and paste them in StartTransfer.java in line 25 and 26.
 3. copy the youtube playlistid (you can find it in the link of your playlist) and paste it in StartTransfer.java in line 23.
 4. create or an existing playlist from spotify and copy the id (you can find it in the link or URI) and paste it StartTransfer.java in line 27.
-after you've done these steps you can compile & start the project!
+
+After you've done these steps you can compile & start the project!
 
 ## Licensing
 The source code is licensed under GPL v3. License is available [here](https://github.com/Mitjaaa/YTtoSpotify/blob/master/LICENSE)
