@@ -28,7 +28,7 @@ For Spotify:
 * Spotify web API v4.3.0
 * Spring boot starter web
 
-*Note: those are already included in the build.gradle file! 
+*Note: those are already included in the build.gradle file!*
 
 ## Example
 I've transfered [my youtube-playlist](https://www.youtube.com/playlist?list=PLaJMPdUYqLLws7HlLN9SgELyv0xkm-NMa) with over 280 items to [my spotify-playlist](https://open.spotify.com/playlist/0ihLi9e9oDKTjmgEb6mHfL?si=RDhiNiwlTLmajgZkJD_gOw) which has (after the transfer) 268 items. Spotify couldn't find a few items because some songs aren't on there or the youtube video had a weird name.
