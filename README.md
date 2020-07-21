@@ -1,4 +1,8 @@
 # YTtoSpotify
+[![License](https://img.shields.io/badge/License%20-GPLv3-blue.svg?style=flat)](https://github.com/Mitjaaa/YTtoSpotify/blob/master/LICENSE)
+
+
+## Description
 This project transfers a Youtube playlist from your account to a Spotify playlist.
 
 ## How to use it?
