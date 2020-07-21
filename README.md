@@ -28,6 +28,7 @@ For Spotify:
 * Spotify web API v4.3.0
 * Spring boot starter web
 
+
 *Note: those are already included in the build.gradle file!*
 
 ## Example
