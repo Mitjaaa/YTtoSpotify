@@ -8,8 +8,8 @@ This project transfers a Youtube playlist from your account to a Spotify playlis
 ## How to use it?
 It's almost ready to use. You just need to do a few things:
 1. create a new project or choose an existing project [here](https://console.developers.google.com/project/_/apiui/credential).
-    * then you need to copy and paste the client id and secret 
-      from your Google project to the client_secrets.json in src/main/resources/
+    * create a new OAuth-Client-ID.
+    * then copy and paste the client id and secret to the client_secrets.json in src/main/resources/
 2. visit [this site](https://developer.spotify.com/dashboard/applications), log in, and create an app.
     * then go to the settings and add http://localhost:8080/api as a new redirect url.
     * After that copy the client id and secret of your spotify app and paste them in StartTransfer.java in line 25 and 26.
