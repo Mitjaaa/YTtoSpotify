@@ -3,7 +3,7 @@
 
 
 ## Description
-This project transfers a Youtube playlist from your account to a Spotify playlist.
+This project transfers a Youtube playlist a Spotify playlist.
 
 ## How to use it?
 It's almost ready to use. You just need to do a few things:
